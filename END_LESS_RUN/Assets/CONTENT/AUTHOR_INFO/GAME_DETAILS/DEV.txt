@@ -1,0 +1,6 @@
+PLAYER_BB8 -   Height(y) 	- 2
+               Width(x)  	- 10
+               z      		- 25.5
+
+
+OctaneRender for Unity
