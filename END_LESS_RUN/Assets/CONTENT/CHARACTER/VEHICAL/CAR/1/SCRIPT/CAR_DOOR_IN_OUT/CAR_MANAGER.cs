@@ -52,7 +52,7 @@ using UnityStandardAssets.Vehicles.Car;
         }
 
         public void VehicleControl(GameObject playerObj)
-    {
+        {
             if (inVeh == false)
             {
 

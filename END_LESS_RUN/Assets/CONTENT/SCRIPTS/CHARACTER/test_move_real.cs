@@ -284,10 +284,22 @@ using UnityEngine.UI;
             //rb.AddForce(movement * speed);
 
             head.transform.position = new Vector3(transform.position.x, transform.position.y + Rhead, transform.position.z);
-        }
 
 
-        private void FixedUpdate()
+
+        //ROTATE HEAD
+        // if (Input.GetKey(KeyCode.Q))
+        //    head.transform.Rotate(-Vector3.down * RotateSpeed * Time.deltaTime);
+        //else if (Input.GetKey(KeyCode.E))
+        //    head.transform.Rotate(Vector3.down * RotateSpeed * Time.deltaTime);
+
+
+        
+
+    }
+
+
+    private void FixedUpdate()
         {
             // Call the Move function of the ball controller
             Ball.Move(Player, Jump);
@@ -296,7 +308,7 @@ using UnityEngine.UI;
 
 
 
-
+ 
 
 
         /* private  Update()

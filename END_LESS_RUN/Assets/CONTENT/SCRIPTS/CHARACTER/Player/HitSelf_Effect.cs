@@ -25,7 +25,7 @@ public class HitSelf_Effect : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Hit");
+        //Debug.Log("Hit");
         Instantiate(hitParticles, transform.position, transform.rotation);
        // Destroy(GameObject.Find("Hit_02(Clone)"), 2);
     }

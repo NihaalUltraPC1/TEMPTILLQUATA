@@ -68,7 +68,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
         private void FixedUpdate()
         {
             AeroCurSpeed = ForwardSpeed;
-            Debug.Log(ForwardSpeed);
+            //Debug.Log(ForwardSpeed);
         }
 
 
