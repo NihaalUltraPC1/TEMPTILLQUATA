@@ -7,6 +7,7 @@ using UnityStandardAssets.Vehicles.Aeroplane;
 public class Ship_DisableEnableObject : MonoBehaviour {
 
     public AeroLock AeroLock;
+    
 
     public GameObject Suttle_Camera;
     public AeroplaneUserControl AeroplaneUserControl;
@@ -15,6 +16,8 @@ public class Ship_DisableEnableObject : MonoBehaviour {
     //public GameObject player;
     public GameObject player1;
     public GameObject Player_BotUI;
+    public GameObject Enter_AeroUI;
+    public GameObject Exit_AeroUI;
 
     //UI DISABLE INTERDFACE.........
     public GameObject FlyControler;
@@ -32,10 +35,12 @@ public class Ship_DisableEnableObject : MonoBehaviour {
         AeroplaneUserControl.enabled = false;
         FlyControler.SetActive(false);
 
+
         //player.SetActive(true);
         player1 = GameObject.Find("PLAYER_BOT_MAIN");
         player1.SetActive(true);
         Player_BotUI.SetActive(true);
+        Exit_AeroUI.SetActive(false);
 
         //BOOLEAN.........
         inVeh = false;
@@ -45,6 +50,7 @@ public class Ship_DisableEnableObject : MonoBehaviour {
     void Update()
     {
         
+
         //player1 = GameObject.Find("PLAYER_BOT_MAIN");
         /*
 
@@ -90,6 +96,8 @@ public class Ship_DisableEnableObject : MonoBehaviour {
 
             //player1 = null;
             player1.SetActive(true);
+            StartCoroutine("DelayOnExitUIButton");
+            
 
             //Switch Back to player........
             //BOT Tools......
@@ -120,7 +128,10 @@ public class Ship_DisableEnableObject : MonoBehaviour {
 
     IEnumerator DelayOnEnterVechicalUnlock()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(.5f);
+        //Enter_AeroUI.SetActive(false);
+        Exit_AeroUI.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
         //player1 = playerObj;
         //player1.transform.parent = playerObj.transform;
         //player.transform.parent = this.transform;
@@ -148,7 +159,11 @@ public class Ship_DisableEnableObject : MonoBehaviour {
 
     IEnumerator DelayOnEnterVechicallock()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(.5f);
+        Enter_AeroUI.SetActive(false);
+        //yield return new WaitForSeconds(.5f);
+        
+        yield return new WaitForSeconds(7.5f);
         //player1 = playerObj;
         //player1.transform.parent = playerObj.transform;
         //player.transform.parent = this.transform;
@@ -156,6 +171,7 @@ public class Ship_DisableEnableObject : MonoBehaviour {
 
         //BOT Tools......
         Player_BotUI.SetActive(false);
+        Exit_AeroUI.SetActive(true);
         //player.SetActive(false);
 
         player1.SetActive(false);
@@ -171,6 +187,13 @@ public class Ship_DisableEnableObject : MonoBehaviour {
         AeroIn = true;
 
         StartCoroutine(Time(true));
+    }
+
+    IEnumerator DelayOnExitUIButton()
+    {
+        yield return new WaitForSeconds(1);
+        Exit_AeroUI.SetActive(false);
+        Enter_AeroUI.SetActive(true);
     }
 
 }

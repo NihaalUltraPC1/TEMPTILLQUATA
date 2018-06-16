@@ -8,7 +8,8 @@ public class Suttle_trigger : MonoBehaviour {
     public GameObject player;
     public Ship_DisableEnableObject carlock;
     public AudioSource LaserSound;
-
+    public AeroEnterExitBut AeroEnterExitBut;
+    public AeroEnterExitBut AeroExitBut;
 
     public int CarExit;
 
@@ -21,6 +22,7 @@ public class Suttle_trigger : MonoBehaviour {
 
     private void Start()
     {
+        
         CarExit = 0;
         inTrigger = false;
         LineRenderer.enabled = false;
@@ -29,39 +31,43 @@ public class Suttle_trigger : MonoBehaviour {
     void Update()
     {
 
-     
+
 
         if (inTrigger == true)
         {
-            
-            if (Input.GetKeyDown(KeyCode.F) && CarExit == 0)
+
+            //if (Input.GetKeyDown(KeyCode.F) && CarExit == 0)
+            if ((Input.GetKeyDown(KeyCode.F)  || AeroEnterExitBut.isPointerDown == true) && CarExit == 0)
             {
-                
+
+                Debug.Log("In");
                 CarExit = 1;
+
                 carlock.VehicleControl(player);
                 //inTrigger = false;
                 LaserSound.Play();
                 LineRenderer.enabled = true;
+                
 
 
-                if(AeroLock.Lock == "Locked")
+                if (AeroLock.Lock == "Locked")
                 {
                     StartCoroutine("DelayOnEnterVechicallock");
                 }
-                else if(AeroLock.Lock == "UnLocked")
+                else if (AeroLock.Lock == "UnLocked")
                 {
                     StartCoroutine("DelayOnEnterVechicalUnlock");
                 }
 
 
-                
+
 
 
 
             }
-            else if (Input.GetKeyDown(KeyCode.F) && CarExit == 1)
+            else if ((Input.GetKeyDown(KeyCode.F) || AeroExitBut.isPointerExit == true) && CarExit == 1)
             {
-
+                Debug.Log("Out");
                 CarExit = 0;
                 carlock.VehicleControl(player);
                 //inTrigger = false;
@@ -106,6 +112,7 @@ public class Suttle_trigger : MonoBehaviour {
         yield return new WaitForSeconds(2);
         LineRenderer.enabled = false;
         LaserSound.Stop();
+        //CarExit = 1;
     }
 
     IEnumerator DelayOnEnterVechicallock()
@@ -113,5 +120,6 @@ public class Suttle_trigger : MonoBehaviour {
         yield return new WaitForSeconds(8);
         LineRenderer.enabled = false;
         LaserSound.Stop();
+        //CarExit = 1;
     }
 }
